@@ -1,9 +1,11 @@
 import { Router } from "express";
+
 import { setSignIn, setSignUp } from "../controllers/authController.js";
+import { validateSignIn, validateSignUp } from "../middlewares/validateAuth.js";
 
 const authRouter = Router();
 
-authRouter.post('/signup', setSignUp);
-authRouter.post('/signin', setSignIn);
+authRouter.post('/signup', validateSignUp, setSignUp);
+authRouter.post('/signin', validateSignIn, setSignIn);
 
 export default authRouter;

@@ -1,18 +1,21 @@
 import bcrypt from 'bcrypt';
+import { v4 as uuid } from 'uuid';
 
 import db from '../db.js';
 
 export async function setSignUp(req, res){
     const { name, email, password } = req.body;
+    console.log('before try')
 
     try {
         const passwordHashed = bcrypt.hashSync(password, 10);
 
         await db.query(`
             INSERT INTO users (name, email, password)
-            VALUES $1, $2, $3
+            VALUES ($1, $2, $3)
         `, [name, email, passwordHashed])
-
+        
+        console.log('no try')
         res.sendStatus(201);  
     } catch (error) {
         res.status(500).send(error)
