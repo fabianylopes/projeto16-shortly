@@ -5,7 +5,6 @@ import db from '../db.js';
 
 export async function setSignUp(req, res){
     const { name, email, password } = req.body;
-    console.log('before try')
 
     try {
         const passwordHashed = bcrypt.hashSync(password, 10);
@@ -15,7 +14,6 @@ export async function setSignUp(req, res){
             VALUES ($1, $2, $3)
         `, [name, email, passwordHashed])
         
-        console.log('no try')
         res.sendStatus(201);  
     } catch (error) {
         res.status(500).send(error)
@@ -47,6 +45,8 @@ export async function setSignIn(req, res){
             return res.status(200).send(token);
         }
 
+        res.sendStatus(401);
+        
     } catch (error) {
         res.status(500).send(error);
     }
