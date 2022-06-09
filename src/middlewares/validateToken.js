@@ -9,7 +9,6 @@ export async function validateToken(req, res, next){
     }
 
     try {
-
         const { rows: sessions } = await db.query(`
             SELECT * FROM sessions WHERE token=$1
         `, [token]);
@@ -27,11 +26,12 @@ export async function validateToken(req, res, next){
         if (!user) {
             return res.sendStatus(401);
         }
-
+        
+        res.locals.user = user;
+        
     } catch (error) {
         res.status(500).send(error);
     }
 
-    res.locals.user = user;
     next()
 }
