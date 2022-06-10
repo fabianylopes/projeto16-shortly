@@ -8,9 +8,9 @@ export async function setUrl(req, res){
     const { url } = req.body;
 
     const shortenUrl = nanoid(8);
-    console.log('before')
+
     await urlsRepository.createShortenUrl(url, shortenUrl, id)
-    console.log('here')
+
     res.status(201).send({
         shortenUrl
     })

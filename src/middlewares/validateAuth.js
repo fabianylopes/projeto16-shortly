@@ -20,4 +20,4 @@ function validateSignIn(req, res, next) {
     next();
 }
 
-export {validateSignUp, validateSignIn}
+export { validateSignUp, validateSignIn }

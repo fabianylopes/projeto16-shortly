@@ -1,10 +1,8 @@
 import db from "../db.js";
 
 export async function getUser(req, res){
-    //const { user } = res.locals;
 
     try {
-
         const users = await db.query(`
             SELECT * FROM users
         `)
