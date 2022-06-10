@@ -10,7 +10,7 @@ CREATE TABLE "urls" (
   "url" TEXT NOT NULL,
   "userId" INTEGER NOT NULL REFERENCES users(id),
   "shortUrl" TEXT NOT NULL UNIQUE,
-	"visitCount" INTEGER NOT NULL DEFAULT '0',
+	"visitCount" INTEGER NOT NULL DEFAULT '0'
 );
 
 CREATE TABLE "sessions" (
